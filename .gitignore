@@ -1,0 +1,4 @@
+# spurious latex output
+*.log
+*.aux
+
