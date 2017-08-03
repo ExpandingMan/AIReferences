@@ -1,6 +1,49 @@
 \documentclass{subfile}
 
 \begin{document}
-This is a test.
+An ``artificial neural network" (ANN) is a construct for fitting a function to data (i.e. using empirical risk minimization) consisting of a set of ``composed"
+basis function methods which are fit simultaneously.
+
+Suppose we have some data $X$ and $y$, in general arbitrary rank tensors.  The goal is to learn a function $F: X\to \hat{y}$ which approximates the conditional
+probability distribution $P(y|X)$.  At its simplest,
+deep learning takes $F$ to be of the form
+\begin{align}
+\begin{split}
+    F(X) = \hat{y} = f_{(n)}(W^{(n)}\cdot y^{(n-1)}+b^{(n)}) \\
+    y^{(n-1)} = f_{(n-1)}(W^{(n-1)}\cdot y^{(n-2)}+b^{(n-1)}) \\
+    \cdots \\
+    y^{(1)} = f_{(1)}(W^{(1)}\cdot X+b^{(1)})
+\end{split}
+\end{align}
+where the $f_{(n)}$ are (typically non-linear) element-wise functions.  The $W^{(n)}$ and $b^{(n)}$ are referred to as weight and bias tensors, respectively,
+their rank and dimensions are determined by $X$ and depend on the implementation.  They are typically randomly initialized according to a simple distribution,
+which we will address in a future section.  Note that also more elaborate function topologies (ways of inputting the $y^{(n)}$'s to different basis functions)
+are possible and even common.  We will discuss these in future sections but they are hard to express in the general case.  Note that typically the $f_{(n)}$
+have no parameters of their own, so that the $W$'s and the $b$'s constitute all of the parameters of the model.  Since these are typically tensors of rank 2 or
+higher, it is common to have ANN's with millions of parameters.  It is standard practice not to concern oneself with the number of parameters in the model, and
+one may even choose underdetermined models.  This is essentially the key novelty of ``machine learning" (ML) which we will briefly discuss momentarily.
+
+The loss function depends on the implementation, but in most cases these are something simple like $L_{2}$ (in the continuous case) or cross-entropy (in the
+discrete case).  Optimization is usually performed using some variant of stochastic gradient descent SGD).  Of course symbolically computing the gradient
+$\nabla_{\theta}F(X;\theta)$ is trivial using the chain rule, but one must be careful of the computational implementation since a naive approach can lead to a
+combinatoric explosion of terms and hence time complexity.
+
+\subsection{Novelties of ML}
+The principle innovation of ML is that attempting to optimze loss functions following from models like those introduced above using stochastic gradient descent
+often leads to reasonable approximations of ``real-world" $P(X,y)$.  Understanding why this should be the case would require understanding the underlying
+structure of the distributions being fit.  This is a daunting task since ML is effective for a wide variety of different regression and classification tasks.  A
+small minority of the literature pursues this question \cite{renorm,deepcheap}.
+
+Even from an optimistic perspective one might expect the gradient descent to become stuck in one of a huge number of (spurious) local minima.  There are a
+number of reasons why this problem is not prohibitive in practice.  For one, the parameter space of $F(X;\theta)$ is typically of very high dimensionality
+($\gtrsim 10^{6}$) so the vast majority of critical points are saddle points, where of course SGD does not get stuck.  The second, and much more surprising
+reason is that typically the structure of the loss function is such that many of the local minima in the space actually correspond to excellent generalizations
+of the data (i.e. functions which are a good fit to $P(X,y)$.  This is quite surprising, and indeed nobody currently understands why this should be the case in
+such a wide variety of different applications.
+
+It also bears mentioning that the presence of so many \emph{desirable} local minima (typically found in the vicinity of the true minimum) makes it possible to
+train underdetermined models without severely overfitting them.  This may seem remarkable a priori, but follows naturally from the above surprising facts.  Note
+however that even though this is the case, often methods of preventing overfitting are employed (even when this involves simply discriminating between local
+minima) and will be discussed in a subsequent section.
 
 \end{document}

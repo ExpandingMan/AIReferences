@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: utphys.bst
+Database file #1: airefs.bib
+Warning--empty pages in renorm
+Warning--empty pages in deepcheap
+You've used 2 entries,
+            2328 wiz_defined-function locations,
+            574 strings with 4295 characters,
+and the built_in function-call counts, 446 in all, are:
+= -- 32
+> -- 19
+< -- 0
++ -- 7
+- -- 5
+* -- 64
+:= -- 66
+add.period$ -- 2
+call.type$ -- 2
+change.case$ -- 6
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 20
+empty$ -- 51
+format.name$ -- 5
+if$ -- 103
+int.to.chr$ -- 0
+int.to.str$ -- 2
+missing$ -- 8
+newline$ -- 9
+num.names$ -- 2
+pop$ -- 8
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 3
+stack$ -- 0
+substring$ -- 0
+swap$ -- 2
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 2
+width$ -- 3
+write$ -- 18
+(There were 2 warnings)

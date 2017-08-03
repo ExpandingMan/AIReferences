@@ -1,0 +1,15 @@
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{1}
+
+\bibitem{renorm}
+P.~{Mehta} and D.~J. {Schwab}, ``{An exact mapping between the Variational
+  Renormalization Group and Deep Learning},'' {\em ArXiv e-prints} (Oct., 2014)
+  , \href{http://arxiv.org/abs/1410.3831}{{\ttfamily arXiv:1410.3831
+  [stat.ML]}}.
+
+\bibitem{deepcheap}
+H.~W. {Lin}, M.~{Tegmark}, and D.~{Rolnick}, ``{Why does deep and cheap
+  learning work so well?},'' {\em ArXiv e-prints} (Aug., 2016) ,
+  \href{http://arxiv.org/abs/1608.08225}{{\ttfamily arXiv:1608.08225
+  [cond-mat.dis-nn]}}.
+
+\end{thebibliography}\endgroup
