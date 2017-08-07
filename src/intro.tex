@@ -29,7 +29,7 @@ $\nabla_{\theta}F(X;\theta)$ is trivial using the chain rule, but one must be ca
 combinatoric explosion of terms and hence time complexity.
 
 \subsection{Novelties of ML}
-The principle innovation of ML is that attempting to optimze loss functions following from models like those introduced above using stochastic gradient descent
+The principle innovation of ML is that attempting to optimize loss functions following from models like those introduced above using stochastic gradient descent
 often leads to reasonable approximations of ``real-world" $P(X,y)$.  Understanding why this should be the case would require understanding the underlying
 structure of the distributions being fit.  This is a daunting task since ML is effective for a wide variety of different regression and classification tasks.  A
 small minority of the literature pursues this question \cite{renorm,deepcheap}.
@@ -41,9 +41,9 @@ reason is that typically the structure of the loss function is such that many of
 of the data (i.e. functions which are a good fit to $P(X,y)$.  This is quite surprising, and indeed nobody currently understands why this should be the case in
 such a wide variety of different applications.
 
-It also bears mentioning that the presence of so many \emph{desirable} local minima (typically found in the vicinity of the true minimum) makes it possible to
-train underdetermined models without severely overfitting them.  This may seem remarkable a priori, but follows naturally from the above surprising facts.  Note
-however that even though this is the case, often methods of preventing overfitting are employed (even when this involves simply discriminating between local
-minima) and will be discussed in a subsequent section.
+It also bears mentioning that the presence of so many \emph{desirable} local minima (i.e. that correspond to good generalizations, typically found in the
+vicinity of the true minimum) makes it possible to train underdetermined models without severely overfitting them.  This may seem remarkable a priori, but
+follows naturally from the above surprising facts.  Note however that even though this is the case, often methods of preventing overfitting are employed (even
+when this involves simply discriminating between local minima) and will be discussed in a subsequent section.
 
 \end{document}
