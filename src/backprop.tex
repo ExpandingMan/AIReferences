@@ -1,0 +1,43 @@
+\documentclass{subfile}
+
+\begin{document}
+As discussed, these models are typically fit using some form of SGD.  Differentiating the neural network $F(X;W,b)$ is straightforward, but in practice one
+should be careful to make sure the implementation remains computationally efficient.  The standard implementation for computing derivatives of neural networks
+is known as back-propagation.  Some new notation will be needed to simplify this.  Throughout we will use Einstein notation.  Let the output of layer $\ell$ be
+\begin{equation}
+    o^{(\ell)}_{i} = f_{(\ell)}(w^{(\ell)}_{ij}o^{(\ell-1)}_{j})
+\end{equation}
+where we have absorbed the bias into the weights $w^{(\ell)}_{ij}$ (requiring the last component of each layer to always be $1$).  Then, quite trivially we have
+\begin{equation}
+    \frac{\d o^{(\ell)}_{k}}{\d w^{(\ell)}_{ij}} = {f}^{\prime}_{(\ell)}\delta^{k}_{i}o^{(\ell-1)}_{j}
+\end{equation}
+where $f^{\prime}$ is the first derivative of $f$ with respect to its argument and $o^{(1)}_{j}=x_{j}$ is the input.
+
+We can use this to compute the gradient of an arbitrary loss function
+\begin{equation}
+    \frac{\d L}{\d w^{(\ell)}_{ij}} = \frac{\d L}{\d o^{(\ell)}_{k}}\frac{\d o^{(\ell)}_{k}}{\d w^{(\ell)}_{ij}} = \frac{\d L}{\d
+o^{(\ell)}_{i}}f^{\prime}_{(\ell)}o_{j}^{(\ell-1)}
+\end{equation}
+Note also that
+\begin{equation}
+    \frac{\d L}{\d o^{(\ell)}_{i}} = \frac{\d L}{\d o^{(M)}_{k_{1}}}\frac{\d o^{(M)}_{k_{1}}}{\d o^{(M-1)}_{k_{2}}}\frac{\d o^{(M-1)}_{k_{2}}}{\d o^{(M-2)}_{k_{3}}}
+    \cdots \frac{\d o^{(\ell+1)}_{k_{n}}}{\d o^{(\ell)}_{i}}
+\end{equation}
+where $M$ is the total number of layers.  At this point there are a few observations that simplify things considerably.  For one, we could have written the
+above recursively
+\begin{equation}
+    \frac{\d L}{\d o^{(\ell)}_{i}} = \frac{\d L}{\d o^{(\ell+1)}_{k}}\frac{\d o^{(\ell+1)}_{k}}{\d o^{(\ell)}_{i}}
+\end{equation}
+We could write similar equations for any $\ell$.  So, once we have a particular $\frac{\d L}{\d o}$, we can use it in our computation of the rest rather than
+re-calculating $\frac{\d o_{i}}{\d o_{j}}$ every time.  Furthermore, each of the intermediate derivatives takes an extremely simple form
+\begin{equation}
+    \frac{\d o^{(\ell+1)}_{k}}{\d o^{(\ell)}_{i}}  = f^{\prime}_{(\ell+1)}w^{(\ell+1)}_{ki}
+\end{equation}
+Then, for neural networks with trivial topologies, backpropagation reduces to taking a simple matrix product.  Schematically, we have
+\begin{equation}\label{backprop_cartoon}
+    \frac{\partial L}{\partial W^{(\ell)}} \sim (f')^{M-L} W^{(M)}\cdot W^{(M-1)}\cdots W^{(\ell+1)}\cdot W^{(\ell)}\cdot o^{(\ell-1)}
+\end{equation}
+Of course Eq. \ref{backprop_cartoon} is only a rough cartoon since the factors of $f'$ are all different (and evaluated at different points) but it makes
+obvious some salient features of neural network gradients.
+
+\end{document}
