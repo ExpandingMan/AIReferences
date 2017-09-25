@@ -32,6 +32,8 @@ See also Preskill's notes at \texttt{http://www.theory.caltech.edu/people/preski
 		A particularly nice way of thinking about the mutual information is using the following, which is obtained trivially from the above
 		$$ I(X,Y) = H(X) + H(Y) - H(X,Y) $$
 		That is, the mutual information is the entropy of $p(x,y)$ if $X$ and $Y$ were independent minus the actualy entropy of $p(x,y)$.  It follows from this that the mutual information is symmetric in its arguments.
+    \item The mutual information $I(X,Y)$ is independent of invertable reparemeterizations of the probability measures.  This follows immediately from the
+        explicit definition of $I(X,Y)$ and from $|p(x)dx| = |p(\xi)d\xi|$.  (Note that such reparemeterizations cannot mix $X$ and $Y$.)
 	\item Entropy is subadditive
 		$$ H(X,Y) \le H(X) + H(Y) $$
 		Of course the quantum analog of this also holds true.  This also guarantees that the mutual information is positive.
